@@ -212,5 +212,32 @@ namespace CRM
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string dd = caseView[0, caseView.CurrentRow.Index].Value.ToString();
+            int id = int.Parse(dd);
+            if (MessageBox.Show("Are you sure??", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string connStr = File.ReadAllText("connector.txt");
+                MySqlConnection conn = new MySqlConnection(connStr);
+                try
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM cases WHERE 	caceId ='" + id + "'";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Case Deleted Successfully!");
+                    }
+                    InitializeCseGridView();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
     }
 }

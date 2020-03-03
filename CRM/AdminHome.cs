@@ -282,7 +282,43 @@ namespace CRM
             string s = caseFile.Text;
             string filen = Path.GetFileName(s);
             string dirctory = Path.GetDirectoryName(s);
-            MessageBox.Show(filen+"\n" +dirctory);  
+            string caseDir = @"d:\cases\"+ caseref;
+            string destination = Path.Combine(caseDir, filen);
+            if (!System.IO.Directory.Exists(caseDir))
+            {
+                System.IO.Directory.CreateDirectory(caseDir);
+                File.Copy(s, destination);
+                string connStr = File.ReadAllText("connector.txt");
+                MySqlConnection conn = new MySqlConnection(connStr);
+                try
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO cases ( caseRef, caseFile) VALUES ( '" + caseref + "','" + caseDir +  "')";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Data inserted successfully"+ caseDir);
+                    }
+
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Directory already exist please change the case  Reference");
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string dd = caseView[2, caseView.CurrentRow.Index].Value.ToString();
+            System.Diagnostics.Process.Start(dd);
 
         }
     }

@@ -1,0 +1,7 @@
+Release Crash at Sun Nov 24 21:59:10 2019
+; Reason Uncaught Exception during initialization.
+
+Last error:
+
+
+Current stack:

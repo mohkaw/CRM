@@ -338,8 +338,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(207, 31);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Open Selected Case File";
+            this.button2.Text = "Open Selected Case Folder";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // insBtn
             // 
@@ -373,6 +374,7 @@
             this.caseView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.caseView.Location = new System.Drawing.Point(6, 85);
             this.caseView.Name = "caseView";
+            this.caseView.ReadOnly = true;
             this.caseView.RowHeadersWidth = 51;
             this.caseView.RowTemplate.Height = 24;
             this.caseView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

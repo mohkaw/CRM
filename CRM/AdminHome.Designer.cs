@@ -51,27 +51,38 @@
             this.userGridView = new System.Windows.Forms.DataGridView();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ManageCases = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.insBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.caseSearch = new System.Windows.Forms.TextBox();
             this.caseView = new System.Windows.Forms.DataGridView();
+            this.InsertCase = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.caseFile = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.caseOwner = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.caseRef = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.InsertUser.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.DeleteUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.ManageCases.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.caseView)).BeginInit();
+            this.InsertCase.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.InsertUser);
             this.tabControl1.Controls.Add(this.DeleteUser);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.ManageCases);
+            this.tabControl1.Controls.Add(this.InsertCase);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -296,20 +307,20 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "Select a user to delete ";
             // 
-            // tabPage1
+            // ManageCases
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.insBtn);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.caseSearch);
-            this.tabPage1.Controls.Add(this.caseView);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1072, 470);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Manage Cases";
+            this.ManageCases.BackColor = System.Drawing.SystemColors.Control;
+            this.ManageCases.Controls.Add(this.button3);
+            this.ManageCases.Controls.Add(this.button2);
+            this.ManageCases.Controls.Add(this.insBtn);
+            this.ManageCases.Controls.Add(this.label9);
+            this.ManageCases.Controls.Add(this.caseSearch);
+            this.ManageCases.Controls.Add(this.caseView);
+            this.ManageCases.Location = new System.Drawing.Point(4, 25);
+            this.ManageCases.Name = "ManageCases";
+            this.ManageCases.Size = new System.Drawing.Size(1072, 470);
+            this.ManageCases.TabIndex = 2;
+            this.ManageCases.Text = "Manage Cases";
             // 
             // button3
             // 
@@ -368,6 +379,92 @@
             this.caseView.Size = new System.Drawing.Size(783, 318);
             this.caseView.TabIndex = 0;
             // 
+            // InsertCase
+            // 
+            this.InsertCase.BackColor = System.Drawing.SystemColors.Control;
+            this.InsertCase.Controls.Add(this.button5);
+            this.InsertCase.Controls.Add(this.button4);
+            this.InsertCase.Controls.Add(this.caseFile);
+            this.InsertCase.Controls.Add(this.label12);
+            this.InsertCase.Controls.Add(this.caseOwner);
+            this.InsertCase.Controls.Add(this.label11);
+            this.InsertCase.Controls.Add(this.label10);
+            this.InsertCase.Controls.Add(this.caseRef);
+            this.InsertCase.Location = new System.Drawing.Point(4, 25);
+            this.InsertCase.Name = "InsertCase";
+            this.InsertCase.Size = new System.Drawing.Size(1072, 470);
+            this.InsertCase.TabIndex = 3;
+            this.InsertCase.Text = "Insert New Case";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(7, 261);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(140, 31);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "Insert Case";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(7, 202);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(112, 30);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Browse";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // caseFile
+            // 
+            this.caseFile.Location = new System.Drawing.Point(7, 174);
+            this.caseFile.Name = "caseFile";
+            this.caseFile.Size = new System.Drawing.Size(365, 22);
+            this.caseFile.TabIndex = 5;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 154);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(74, 17);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Case File: ";
+            // 
+            // caseOwner
+            // 
+            this.caseOwner.FormattingEnabled = true;
+            this.caseOwner.Location = new System.Drawing.Point(7, 115);
+            this.caseOwner.Name = "caseOwner";
+            this.caseOwner.Size = new System.Drawing.Size(365, 24);
+            this.caseOwner.TabIndex = 3;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 95);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 17);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Case Owners:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(4, 37);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(118, 17);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Case Reference: ";
+            // 
+            // caseRef
+            // 
+            this.caseRef.Location = new System.Drawing.Point(7, 57);
+            this.caseRef.Name = "caseRef";
+            this.caseRef.Size = new System.Drawing.Size(365, 22);
+            this.caseRef.TabIndex = 0;
+            // 
             // AdminHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -383,9 +480,11 @@
             this.DeleteUser.ResumeLayout(false);
             this.DeleteUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userGridView)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.ManageCases.ResumeLayout(false);
+            this.ManageCases.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.caseView)).EndInit();
+            this.InsertCase.ResumeLayout(false);
+            this.InsertCase.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -415,12 +514,21 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridView userGridView;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage ManageCases;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button insBtn;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox caseSearch;
         private System.Windows.Forms.DataGridView caseView;
+        private System.Windows.Forms.TabPage InsertCase;
+        private System.Windows.Forms.ComboBox caseOwner;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox caseRef;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox caseFile;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button5;
     }
 }

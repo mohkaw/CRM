@@ -29,9 +29,6 @@ namespace CRM
             MD5 md5Hash = MD5.Create();
             string source = passWord.Text;
             string pass = GetMd5HashWithMySecurityAlgo(md5Hash, source);
-           // string pass = passWord.Text;
-
-
             try
             {
                 string connStr = File.ReadAllText("connector.txt");
@@ -68,11 +65,7 @@ namespace CRM
             {
                 MessageBox.Show(ioe.ToString());
             }
-
-
         }
-
-
         static string GetMd5HashWithMySecurityAlgo(MD5 md5Hash, string input)
         {
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));

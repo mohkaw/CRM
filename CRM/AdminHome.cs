@@ -21,6 +21,7 @@ namespace CRM
             InitializeComponent();
             InitializeUserGridView();
             InitializeCseGridView();
+            initilizeCaseOwners();
         }
         private void InitializeUserGridView()
         {
@@ -43,6 +44,30 @@ namespace CRM
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        private void initilizeCaseOwners()
+        {
+            string connStr = File.ReadAllText("connector.txt");
+            string userName = searchBox.Text;
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string check = "SELECT * FROM users";
+                MySqlCommand checking = new MySqlCommand(check, conn);
+                MySqlDataReader reader = checking.ExecuteReader();
+                while(reader.Read())
+                {
+                    string uname = reader[1].ToString();
+                    caseOwner.Items.Add(uname);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            caseOwner.SelectedIndex = 1;
         }
 
 
@@ -238,6 +263,27 @@ namespace CRM
                     Console.WriteLine(ex.ToString());
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            if(fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = fileDialog.FileName;
+                caseFile.Text = filename;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string caseref = caseRef.Text;
+            string uname = caseOwner.SelectedItem.ToString();
+            string s = caseFile.Text;
+            string filen = Path.GetFileName(s);
+            string dirctory = Path.GetDirectoryName(s);
+            MessageBox.Show(filen+"\n" +dirctory);  
+
         }
     }
 }

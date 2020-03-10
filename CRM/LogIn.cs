@@ -41,18 +41,26 @@ namespace CRM
                 {
                     if(read[6].Equals("admin"))
                     {
+                        Variables.loggedUser.UserName = user;
+                        Variables.loggedUser.UserID = int.Parse(read[0].ToString());
                         this.Hide();
                         Form f1 = new AdminHome();
                         f1.ShowDialog();
                         this.Close();
+
                     }
                     else if(read[6].Equals("client"))
                     {
+                        Variables.loggedUser.UserName = user;
+                        Variables.loggedUser.UserID = int.Parse(read[0].ToString());
                         this.Hide();
                         Form f1 = new ClientHome();
                         f1.ShowDialog();
                         this.Close();
                     }
+                    
+
+
                 }
                 else
                 {
@@ -75,6 +83,7 @@ namespace CRM
                 sBuilder.Append(data[i].ToString("x2"));
             }
             return sBuilder.ToString();
+
         }
     }
 }

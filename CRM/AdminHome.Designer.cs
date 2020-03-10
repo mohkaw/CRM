@@ -88,6 +88,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1080, 499);
             this.tabControl1.TabIndex = 10;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // InsertUser
             // 
@@ -278,10 +279,13 @@
             // userGridView
             // 
             this.userGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.userGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.userGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userGridView.Location = new System.Drawing.Point(9, 87);
             this.userGridView.Name = "userGridView";
             this.userGridView.ReadOnly = true;
+            this.userGridView.RowHeadersVisible = false;
             this.userGridView.RowHeadersWidth = 51;
             this.userGridView.RowTemplate.Height = 24;
             this.userGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -371,10 +375,14 @@
             // caseView
             // 
             this.caseView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.caseView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.caseView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.caseView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.caseView.GridColor = System.Drawing.SystemColors.Control;
             this.caseView.Location = new System.Drawing.Point(6, 85);
             this.caseView.Name = "caseView";
             this.caseView.ReadOnly = true;
+            this.caseView.RowHeadersVisible = false;
             this.caseView.RowHeadersWidth = 51;
             this.caseView.RowTemplate.Height = 24;
             this.caseView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

@@ -14,6 +14,7 @@ namespace CRM
         [STAThread]
         static void Main()
         {
+            Variables.loggedUser = new LoggedUser();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form form1 = new LogIn();

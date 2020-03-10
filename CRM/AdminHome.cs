@@ -22,6 +22,8 @@ namespace CRM
             InitializeUserGridView();
             InitializeCseGridView();
             initilizeCaseOwners();
+            this.Text = "Logged In as " + Variables.loggedUser.UserName;
+            this.uType.SelectedIndex = 1;
         }
         private void InitializeUserGridView()
         {
@@ -293,15 +295,24 @@ namespace CRM
                 try
                 {
                     conn.Open();
-                    string sql = "INSERT INTO cases ( caseRef, caseFile) VALUES ( '" + caseref + "','" + caseDir +  "')";
+                    string sql = "SET GLOBAL sql_mode ='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION,NO_BACKSLASH_ESCAPES';"+"INSERT INTO cases ( caseRef, caseFile) VALUES ( '" + caseref + "','" + caseDir +  "')";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     int count = cmd.ExecuteNonQuery();
                     if (count > 0)
                     {
                         MessageBox.Show("Data inserted successfully"+ caseDir);
                     }
+                    string userSql="SELECT * FROM users WHERE uName = '"+ uname + "'";
+                    MySqlCommand cmd1 = new MySqlCommand(userSql, conn);
+                    MySqlDataReader read = cmd1.ExecuteReader();
+                    read.Read();
+                    int userId = int.Parse(read[0].ToString());
+                    read.Close();
+                    string caseSql = "INSERT INTO caseowners ( caseRef, userId, userName) VALUES ( '" + caseref + "','" + userId + "','"+ uname+"')";
+                    MySqlCommand cmd2 = new MySqlCommand(caseSql, conn);
+                    cmd2.ExecuteNonQuery();
 
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -321,5 +332,12 @@ namespace CRM
             System.Diagnostics.Process.Start(dd);
 
         }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            InitializeCseGridView();
+        }
+
+        
     }
 }

@@ -282,6 +282,7 @@
             this.userGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.userGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userGridView.GridColor = System.Drawing.SystemColors.Control;
             this.userGridView.Location = new System.Drawing.Point(9, 87);
             this.userGridView.Name = "userGridView";
             this.userGridView.ReadOnly = true;

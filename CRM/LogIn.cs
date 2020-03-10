@@ -39,10 +39,10 @@ namespace CRM
                 MySqlDataReader read = checking.ExecuteReader();
                 if(read.Read())
                 {
-                    if(read[6].Equals("admin"))
+                    Variables.loggedUser.UserName = user;
+                    Variables.loggedUser.UserID = int.Parse(read[0].ToString());
+                    if (read[6].Equals("admin"))
                     {
-                        Variables.loggedUser.UserName = user;
-                        Variables.loggedUser.UserID = int.Parse(read[0].ToString());
                         this.Hide();
                         Form f1 = new AdminHome();
                         f1.ShowDialog();
@@ -51,8 +51,6 @@ namespace CRM
                     }
                     else if(read[6].Equals("client"))
                     {
-                        Variables.loggedUser.UserName = user;
-                        Variables.loggedUser.UserID = int.Parse(read[0].ToString());
                         this.Hide();
                         Form f1 = new ClientHome();
                         f1.ShowDialog();

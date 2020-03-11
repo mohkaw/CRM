@@ -95,12 +95,36 @@ namespace CRM
             }
         }
 
-        
+        String clickedCaseRef = null;
 
         private void caseView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string dd = caseView.CurrentCell.Value.ToString();
-            MessageBox.Show(dd);
+            string cr = caseView.CurrentCell.Value.ToString();
+            clickedCaseRef = cr;
+            string connStr = File.ReadAllText("connector.txt");
+            //string caseRef = caseRefBox.Text;
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string check = "SELECT * FROM evidence WHERE caseRef ='" + cr + "'";
+
+                MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
+                DataTable tbl = new DataTable();
+                tbldata.Fill(tbl);
+                tbl.Columns.Remove("evidenceId");
+                tbl.Columns.Remove("caseRef");
+                
+
+                FileView.DataSource = tbl;
+                FileView.Columns["file"].DisplayIndex = 0;
+                FileView.Columns[1].Width = 150;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -154,6 +178,38 @@ namespace CRM
             }
         }
 
-        
+        private void FileBox_TextChanged(object sender, EventArgs e)
+        {
+            string dd = FileBox.Text;
+            //MessageBox.Show(dd);
+            string connStr = File.ReadAllText("connector.txt");
+            //string caseRef = caseRefBox.Text;
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string check = "SELECT * FROM evidence WHERE caseRef ='" + clickedCaseRef + "' AND  file LIKE'%" + dd + "%'";
+
+                MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
+                DataTable tbl = new DataTable();
+                tbldata.Fill(tbl);
+                tbl.Columns.Remove("evidenceId");
+                tbl.Columns.Remove("caseRef");
+                FileView.Columns["file"].DisplayIndex = 0;
+                FileView.Columns[1].Width = 150;
+                FileView.DataSource = tbl;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string fileName = FileView.SelectedCells[1].Value.ToString();
+            System.Diagnostics.Process.Start(fileName);
+           
+        }
     }
 }

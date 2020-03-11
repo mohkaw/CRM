@@ -278,6 +278,7 @@
             // 
             // userGridView
             // 
+            this.userGridView.AllowUserToResizeRows = false;
             this.userGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.userGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -375,6 +376,7 @@
             // 
             // caseView
             // 
+            this.caseView.AllowUserToResizeRows = false;
             this.caseView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.caseView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.caseView.BorderStyle = System.Windows.Forms.BorderStyle.None;

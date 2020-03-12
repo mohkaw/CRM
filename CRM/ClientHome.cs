@@ -21,6 +21,9 @@ namespace CRM
             this.Text = "Logged In as " + Variables.loggedUser.UserName;
             initializeCaseView();
             initilizeCaseRefs();
+            initializeTaskView();
+            taskView.Columns["caseRef"].Width = 150;
+            taskView.Columns["status"].Width = 100;
         }
 
         private void initializeCaseView()
@@ -47,6 +50,37 @@ namespace CRM
             }
             
         }
+
+        private void initializeTaskView()
+        {
+            string connStr = File.ReadAllText("connector.txt");
+            int uId = Variables.loggedUser.UserID;
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                
+                conn.Open();
+                string check = "SELECT * FROM task WHERE userId ='" + uId + "'";
+                // MySqlCommand checking = new MySqlCommand(check, conn);
+                MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
+                DataTable tbl = new DataTable();
+                tbldata.Fill(tbl);
+                
+                tbl.Columns.Remove("taskId");
+                tbl.Columns.Remove("userId");
+
+                
+                taskView.DataSource = tbl;
+                taskView.Columns["caseRef"].Width = 0;
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
+
+        }
         private void initilizeCaseRefs()
         {
             string connStr = File.ReadAllText("connector.txt");
@@ -62,6 +96,7 @@ namespace CRM
                 {
                     string caseRef = reader[0].ToString();
                     caseRefCombo.Items.Add(caseRef);
+                    taskCase.Items.Add(caseRef);
                 }
             }
             catch (Exception ex)
@@ -69,6 +104,7 @@ namespace CRM
                 Console.WriteLine(ex.ToString());
             }
             caseRefCombo.SelectedIndex = 0;
+            taskCase.SelectedIndex = 0;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -176,6 +212,10 @@ namespace CRM
                     MessageBox.Show(ex.ToString());
                 }
             }
+            description.Text = null;
+            evidenceFile.Text = null;
+
+
         }
 
         private void FileBox_TextChanged(object sender, EventArgs e)
@@ -210,6 +250,66 @@ namespace CRM
             string fileName = FileView.SelectedCells[1].Value.ToString();
             System.Diagnostics.Process.Start(fileName);
            
+        }
+
+        private void taskSearch_TextChanged(object sender, EventArgs e)
+        {
+            string reff = taskSearch.Text;
+            string connStr = File.ReadAllText("connector.txt");
+            int uId = Variables.loggedUser.UserID;
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string check = "SELECT * FROM task WHERE userId ='" + uId + "' AND caseRef LIKE '%"+reff+"%'";
+                // MySqlCommand checking = new MySqlCommand(check, conn);
+                MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
+                DataTable tbl = new DataTable();
+                tbldata.Fill(tbl);
+                tbl.Columns.Remove("taskId");
+                tbl.Columns.Remove("userId");
+               
+                taskView.DataSource = tbl;
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int uId = Variables.loggedUser.UserID;
+            string casereference = taskCase.Text;
+            string taskdesc = taskDesc.Text;
+            
+            string connStr = File.ReadAllText("connector.txt");
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                
+               
+                    MySqlConnection con = new MySqlConnection(connStr);
+                    con.Open();
+                    string sql = "INSERT INTO task ( userId, caseRef, taskDescription, status) VALUES ( '" + uId + "','" + casereference + "','" + taskdesc + "',+'pending')";
+                    MySqlCommand cmd = new MySqlCommand(sql, con);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Data inserted successfully");
+                    }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            taskCase.SelectedIndex = 0;
+            taskDesc.Text = null;
         }
     }
 }

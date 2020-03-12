@@ -286,6 +286,7 @@ namespace CRM
             string dirctory = Path.GetDirectoryName(s);
             string caseDir = @"d:\cases\"+ caseref;
             string destination = Path.Combine(caseDir, filen);
+            string description = caseDesc.Text;
             if (!System.IO.Directory.Exists(caseDir))
             {
                 System.IO.Directory.CreateDirectory(caseDir);
@@ -311,6 +312,9 @@ namespace CRM
                     string caseSql = "INSERT INTO caseowners ( caseRef, userId, userName) VALUES ( '" + caseref + "','" + userId + "','"+ uname+"')";
                     MySqlCommand cmd2 = new MySqlCommand(caseSql, conn);
                     cmd2.ExecuteNonQuery();
+                    string evidenceSql = "INSERT INTO evidence ( caseRef, description, file) VALUES ( '" + caseref + "','" + description + "','" + destination + "')";
+                    MySqlCommand cmd3 = new MySqlCommand(evidenceSql, conn);
+                    cmd3.ExecuteNonQuery();
 
 
                 }

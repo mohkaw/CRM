@@ -54,7 +54,6 @@
             this.ManageCases = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.insBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.caseSearch = new System.Windows.Forms.TextBox();
             this.caseView = new System.Windows.Forms.DataGridView();
@@ -67,6 +66,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.caseRef = new System.Windows.Forms.TextBox();
+            this.caseDesc = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.InsertUser.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -318,7 +319,6 @@
             this.ManageCases.BackColor = System.Drawing.SystemColors.Control;
             this.ManageCases.Controls.Add(this.button3);
             this.ManageCases.Controls.Add(this.button2);
-            this.ManageCases.Controls.Add(this.insBtn);
             this.ManageCases.Controls.Add(this.label9);
             this.ManageCases.Controls.Add(this.caseSearch);
             this.ManageCases.Controls.Add(this.caseView);
@@ -330,7 +330,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(795, 159);
+            this.button3.Location = new System.Drawing.Point(795, 122);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(207, 31);
             this.button3.TabIndex = 5;
@@ -340,22 +340,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(795, 122);
+            this.button2.Location = new System.Drawing.Point(795, 85);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(207, 31);
             this.button2.TabIndex = 4;
             this.button2.Text = "Open Selected Case Folder";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // insBtn
-            // 
-            this.insBtn.Location = new System.Drawing.Point(795, 85);
-            this.insBtn.Name = "insBtn";
-            this.insBtn.Size = new System.Drawing.Size(207, 31);
-            this.insBtn.TabIndex = 3;
-            this.insBtn.Text = "Insert New Case";
-            this.insBtn.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -395,6 +386,8 @@
             // InsertCase
             // 
             this.InsertCase.BackColor = System.Drawing.SystemColors.Control;
+            this.InsertCase.Controls.Add(this.label13);
+            this.InsertCase.Controls.Add(this.caseDesc);
             this.InsertCase.Controls.Add(this.button5);
             this.InsertCase.Controls.Add(this.button4);
             this.InsertCase.Controls.Add(this.caseFile);
@@ -411,7 +404,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(7, 261);
+            this.button5.Location = new System.Drawing.Point(7, 393);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(140, 31);
             this.button5.TabIndex = 7;
@@ -478,6 +471,23 @@
             this.caseRef.Size = new System.Drawing.Size(365, 22);
             this.caseRef.TabIndex = 0;
             // 
+            // caseDesc
+            // 
+            this.caseDesc.Location = new System.Drawing.Point(7, 265);
+            this.caseDesc.Multiline = true;
+            this.caseDesc.Name = "caseDesc";
+            this.caseDesc.Size = new System.Drawing.Size(365, 122);
+            this.caseDesc.TabIndex = 8;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 245);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(217, 17);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Description Max 300 Characters: ";
+            // 
             // AdminHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -530,7 +540,6 @@
         private System.Windows.Forms.TabPage ManageCases;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button insBtn;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox caseSearch;
         private System.Windows.Forms.DataGridView caseView;
@@ -543,5 +552,7 @@
         private System.Windows.Forms.TextBox caseFile;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox caseDesc;
     }
 }

@@ -34,6 +34,9 @@ namespace CRM
                 string connStr = File.ReadAllText("connector.txt");
                 MySqlConnection conn = new MySqlConnection(connStr);
                 conn.Open();
+                string setMode = "SET GLOBAL sql_mode = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION,NO_BACKSLASH_ESCAPES';";
+                MySqlCommand newSet = new MySqlCommand(setMode, conn);
+                newSet.ExecuteNonQuery();
                 string check = "SELECT * FROM users WHERE (uName='" + user + "') AND(password='" + pass + "')";
                 MySqlCommand checking = new MySqlCommand(check, conn); 
                 MySqlDataReader read = checking.ExecuteReader();

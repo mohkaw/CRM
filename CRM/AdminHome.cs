@@ -24,16 +24,19 @@ namespace CRM
             initilizeCaseOwners();
             this.Text = "Logged In as " + Variables.loggedUser.UserName;
             this.uType.SelectedIndex = 1;
+            initializeTaskGridView();
+            
+
         }
         private void InitializeUserGridView()
         {
             string connStr = File.ReadAllText("connector.txt");
-            string userName = searchBox.Text;
+            //string userName = searchBox.Text;
             MySqlConnection conn = new MySqlConnection(connStr);
             try
             {
                 conn.Open();
-                string check = "SELECT * FROM users WHERE uName LIKE'%" + userName + "%'";
+                string check = "SELECT * FROM users WHERE uID != '"+Variables.loggedUser.UserID+"'";
                 // MySqlCommand checking = new MySqlCommand(check, conn);
                 MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
                 DataTable tbl = new DataTable();
@@ -48,6 +51,37 @@ namespace CRM
             }
         }
 
+        private void initializeTaskGridView()
+        {
+            string connStr = File.ReadAllText("connector.txt");
+            
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string check = "SELECT * FROM task";
+                
+                MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
+                DataTable tbl = new DataTable();
+                tbldata.Fill(tbl);
+                tbl.Columns.Remove("taskId");
+                tbl.Columns.Remove("userId");
+                
+
+                taskGridView.DataSource = tbl;
+                taskGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                taskGridView.Columns[0].Width = 60;
+                taskGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                taskGridView.Columns[2].Width = 60;
+                taskGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                taskGridView.Columns[3].Width = 60;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
         private void initilizeCaseOwners()
         {
             string connStr = File.ReadAllText("connector.txt");
@@ -173,7 +207,7 @@ namespace CRM
             try
             {
                 conn.Open();
-                string check = "SELECT * FROM users WHERE uName LIKE'%" + userName + "%'";
+                string check = "SELECT * FROM users WHERE uName LIKE'%" + userName + "%' AND uID != '" + Variables.loggedUser.UserID + "'";
                 // MySqlCommand checking = new MySqlCommand(check, conn);
                 MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
                 DataTable tbl = new DataTable();
@@ -296,7 +330,7 @@ namespace CRM
                 try
                 {
                     conn.Open();
-                    string sql = "SET GLOBAL sql_mode ='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION,NO_BACKSLASH_ESCAPES';"+"INSERT INTO cases ( caseRef, caseFile) VALUES ( '" + caseref + "','" + caseDir +  "')";
+                    string sql = "INSERT INTO cases ( caseRef, caseFile) VALUES ( '" + caseref + "','" + caseDir +  "')";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     int count = cmd.ExecuteNonQuery();
                     if (count > 0)
@@ -347,6 +381,64 @@ namespace CRM
             string t = caseDesc.Text;
             int length = t.Length;
             label15.Text = length.ToString();
+        }
+
+        private void taskOwners_TextChanged(object sender, EventArgs e)
+        {
+            string connStr = File.ReadAllText("connector.txt");
+            string taskOwner = taskOwners.Text;
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string check = "SELECT * FROM task WHERE userName LIKE '%"+taskOwner+"'";
+
+                MySqlDataAdapter tbldata = new MySqlDataAdapter(check, conn);
+                DataTable tbl = new DataTable();
+                tbldata.Fill(tbl);
+                tbl.Columns.Remove("taskId");
+                tbl.Columns.Remove("userId");
+
+
+                taskGridView.DataSource = tbl;
+                taskGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                taskGridView.Columns[0].Width = 60;
+                taskGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                taskGridView.Columns[2].Width = 60;
+                taskGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                taskGridView.Columns[3].Width = 60;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string message = taskGridView[1, taskGridView.CurrentRow.Index].Value.ToString();
+            string caseref = taskGridView[1, taskGridView.CurrentRow.Index].Value.ToString();
+            string owner = taskGridView[3, taskGridView.CurrentRow.Index].Value.ToString();
+            string connStr = File.ReadAllText("connector.txt");
+            MySqlConnection conn = new MySqlConnection(connStr);
+            try
+            {
+                conn.Open();
+                string sql = "UPDATE  task SET status = 'done' WHERE taskDescription = '"+ message + "' ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                int count = cmd.ExecuteNonQuery();
+                if (count > 0)
+                {
+                    MessageBox.Show("Data Updated Successfully!");
+                }
+                InitializeCseGridView();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            initializeTaskGridView();
         }
     }
 }

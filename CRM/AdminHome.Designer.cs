@@ -58,6 +58,10 @@
             this.caseSearch = new System.Windows.Forms.TextBox();
             this.caseView = new System.Windows.Forms.DataGridView();
             this.InsertCase = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.caseDesc = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.caseFile = new System.Windows.Forms.TextBox();
@@ -66,10 +70,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.caseRef = new System.Windows.Forms.TextBox();
-            this.caseDesc = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.taskOwners = new System.Windows.Forms.TextBox();
+            this.taskGridView = new System.Windows.Forms.DataGridView();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.InsertUser.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,6 +83,8 @@
             this.ManageCases.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.caseView)).BeginInit();
             this.InsertCase.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,6 +93,7 @@
             this.tabControl1.Controls.Add(this.DeleteUser);
             this.tabControl1.Controls.Add(this.ManageCases);
             this.tabControl1.Controls.Add(this.InsertCase);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -406,6 +414,41 @@
             this.InsertCase.TabIndex = 3;
             this.InsertCase.Text = "Insert New Case";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(93, 245);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(0, 17);
+            this.label15.TabIndex = 11;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(127, 245);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(182, 17);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "out of Max 300 Characters: ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 245);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 17);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Description ";
+            // 
+            // caseDesc
+            // 
+            this.caseDesc.Location = new System.Drawing.Point(7, 265);
+            this.caseDesc.Multiline = true;
+            this.caseDesc.Name = "caseDesc";
+            this.caseDesc.Size = new System.Drawing.Size(365, 122);
+            this.caseDesc.TabIndex = 8;
+            this.caseDesc.TextChanged += new System.EventHandler(this.caseDesc_TextChanged);
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(7, 393);
@@ -475,40 +518,63 @@
             this.caseRef.Size = new System.Drawing.Size(365, 22);
             this.caseRef.TabIndex = 0;
             // 
-            // caseDesc
+            // tabPage1
             // 
-            this.caseDesc.Location = new System.Drawing.Point(7, 265);
-            this.caseDesc.Multiline = true;
-            this.caseDesc.Name = "caseDesc";
-            this.caseDesc.Size = new System.Drawing.Size(365, 122);
-            this.caseDesc.TabIndex = 8;
-            this.caseDesc.TextChanged += new System.EventHandler(this.caseDesc_TextChanged);
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.taskGridView);
+            this.tabPage1.Controls.Add(this.taskOwners);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1072, 470);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "View Tasks";
             // 
-            // label13
+            // label16
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 245);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 17);
-            this.label13.TabIndex = 9;
-            this.label13.Text = "Description ";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(3, 32);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(166, 17);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Search Tasks by Owners";
             // 
-            // label14
+            // taskOwners
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(127, 245);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(182, 17);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "out of Max 300 Characters: ";
+            this.taskOwners.Location = new System.Drawing.Point(6, 52);
+            this.taskOwners.Name = "taskOwners";
+            this.taskOwners.Size = new System.Drawing.Size(259, 22);
+            this.taskOwners.TabIndex = 1;
+            this.taskOwners.TextChanged += new System.EventHandler(this.taskOwners_TextChanged);
             // 
-            // label15
+            // taskGridView
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(93, 245);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(0, 17);
-            this.label15.TabIndex = 11;
+            this.taskGridView.AllowUserToResizeRows = false;
+            this.taskGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.taskGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.taskGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.taskGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.taskGridView.GridColor = System.Drawing.SystemColors.Control;
+            this.taskGridView.Location = new System.Drawing.Point(6, 90);
+            this.taskGridView.Name = "taskGridView";
+            this.taskGridView.ReadOnly = true;
+            this.taskGridView.RowHeadersVisible = false;
+            this.taskGridView.RowHeadersWidth = 51;
+            this.taskGridView.RowTemplate.Height = 24;
+            this.taskGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.taskGridView.Size = new System.Drawing.Size(1015, 316);
+            this.taskGridView.TabIndex = 14;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(6, 424);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(259, 30);
+            this.button7.TabIndex = 15;
+            this.button7.Text = "Mark as Done";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // AdminHome
             // 
@@ -530,6 +596,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.caseView)).EndInit();
             this.InsertCase.ResumeLayout(false);
             this.InsertCase.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,5 +647,10 @@
         private System.Windows.Forms.TextBox caseDesc;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView taskGridView;
+        private System.Windows.Forms.TextBox taskOwners;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button7;
     }
 }

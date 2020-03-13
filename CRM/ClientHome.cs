@@ -68,7 +68,7 @@ namespace CRM
                 
                 tbl.Columns.Remove("taskId");
                 tbl.Columns.Remove("userId");
-
+                tbl.Columns.Remove("userName");
                 
                 taskView.DataSource = tbl;
                 taskView.Columns["caseRef"].Width = 0;
@@ -195,7 +195,7 @@ namespace CRM
                 try
                 {
                     conn.Open();
-                    string sql = "SET GLOBAL sql_mode ='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION,NO_BACKSLASH_ESCAPES';" + "INSERT INTO evidence ( caseRef, description, file) VALUES ( '" + caseref + "','" + desc + "','" + destination + "')";
+                    string sql ="INSERT INTO evidence ( caseRef, description, file) VALUES ( '" + caseref + "','" + desc + "','" + destination + "')";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     int count = cmd.ExecuteNonQuery();
                     if (count > 0)
@@ -282,6 +282,7 @@ namespace CRM
 
         private void button4_Click(object sender, EventArgs e)
         {
+            string user = Variables.loggedUser.UserName;
             int uId = Variables.loggedUser.UserID;
             string casereference = taskCase.Text;
             string taskdesc = taskDesc.Text;
@@ -295,7 +296,7 @@ namespace CRM
                
                     MySqlConnection con = new MySqlConnection(connStr);
                     con.Open();
-                    string sql = "INSERT INTO task ( userId, caseRef, taskDescription, status) VALUES ( '" + uId + "','" + casereference + "','" + taskdesc + "',+'pending')";
+                    string sql = "INSERT INTO task ( userId, caseRef, taskDescription, status, userName) VALUES ( '" + uId + "','" + casereference + "','" + taskdesc + "',+'pending','"+ user + "')";
                     MySqlCommand cmd = new MySqlCommand(sql, con);
                     int count = cmd.ExecuteNonQuery();
                     if (count > 0)

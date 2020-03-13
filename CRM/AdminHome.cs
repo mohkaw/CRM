@@ -342,6 +342,11 @@ namespace CRM
             InitializeCseGridView();
         }
 
-        
+        private void caseDesc_TextChanged(object sender, EventArgs e)
+        {
+            string t = caseDesc.Text;
+            int length = t.Length;
+            label15.Text = length.ToString();
+        }
     }
 }

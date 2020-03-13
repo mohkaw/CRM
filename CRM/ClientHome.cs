@@ -311,5 +311,12 @@ namespace CRM
             taskCase.SelectedIndex = 0;
             taskDesc.Text = null;
         }
+
+        private void taskDesc_TextChanged(object sender, EventArgs e)
+        {
+            string d = taskDesc.Text;
+            int x = d.Length;
+            label9.Text =x.ToString() ;
+        }
     }
 }

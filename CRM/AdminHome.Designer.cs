@@ -68,6 +68,8 @@
             this.caseRef = new System.Windows.Forms.TextBox();
             this.caseDesc = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.InsertUser.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -386,6 +388,8 @@
             // InsertCase
             // 
             this.InsertCase.BackColor = System.Drawing.SystemColors.Control;
+            this.InsertCase.Controls.Add(this.label15);
+            this.InsertCase.Controls.Add(this.label14);
             this.InsertCase.Controls.Add(this.label13);
             this.InsertCase.Controls.Add(this.caseDesc);
             this.InsertCase.Controls.Add(this.button5);
@@ -478,15 +482,33 @@
             this.caseDesc.Name = "caseDesc";
             this.caseDesc.Size = new System.Drawing.Size(365, 122);
             this.caseDesc.TabIndex = 8;
+            this.caseDesc.TextChanged += new System.EventHandler(this.caseDesc_TextChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(4, 245);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(217, 17);
+            this.label13.Size = new System.Drawing.Size(83, 17);
             this.label13.TabIndex = 9;
-            this.label13.Text = "Description Max 300 Characters: ";
+            this.label13.Text = "Description ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(127, 245);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(182, 17);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "out of Max 300 Characters: ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(93, 245);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(0, 17);
+            this.label15.TabIndex = 11;
             // 
             // AdminHome
             // 
@@ -554,5 +576,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox caseDesc;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
     }
 }

@@ -56,6 +56,8 @@
             this.taskDesc = new System.Windows.Forms.TextBox();
             this.taskCase = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Cases.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FileView)).BeginInit();
@@ -318,6 +320,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.taskDesc);
@@ -353,8 +357,9 @@
             this.taskDesc.Location = new System.Drawing.Point(6, 114);
             this.taskDesc.Multiline = true;
             this.taskDesc.Name = "taskDesc";
-            this.taskDesc.Size = new System.Drawing.Size(490, 160);
+            this.taskDesc.Size = new System.Drawing.Size(523, 161);
             this.taskDesc.TabIndex = 2;
+            this.taskDesc.TextChanged += new System.EventHandler(this.taskDesc_TextChanged);
             // 
             // taskCase
             // 
@@ -372,6 +377,23 @@
             this.label7.Size = new System.Drawing.Size(114, 17);
             this.label7.TabIndex = 0;
             this.label7.Text = "Case Referance:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(131, 94);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 17);
+            this.label9.TabIndex = 5;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(166, 94);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(178, 17);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "out of  Max 500 Characters";
             // 
             // ClientHome
             // 
@@ -427,5 +449,7 @@
         private System.Windows.Forms.TextBox taskDesc;
         private System.Windows.Forms.ComboBox taskCase;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
